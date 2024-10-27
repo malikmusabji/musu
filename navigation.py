@@ -5,12 +5,6 @@ from simulation import simulation_page
 from questions import questions_page
 from attendance import attendance_page
 
-def update_timer():
-    if "start_time" in st.session_state:
-        now = datetime.now()
-        elapsed_time = (now - st.session_state["start_time"]).total_seconds()
-        st.session_state["elapsed_seconds"] = int(elapsed_time)
-
 def navigation():
     st.sidebar.title("Navigation")
     selected_page = st.sidebar.selectbox("Choose a page:", ["Home", "Reading Material", "Simulation", "Questions", "Attendance"])

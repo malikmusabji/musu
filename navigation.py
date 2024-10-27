@@ -5,50 +5,11 @@ from simulation import simulation_page
 from questions import questions_page
 from attendance import attendance_page
 
-import streamlit as st
-from datetime import datetime
-
-# Utility function to format time
-def format_time(seconds):
-    hours = seconds // 3600
-    minutes = (seconds % 3600) // 60
-    return f"{hours:02d}:{minutes:02d}"
-
-# Function to initialize or update the session state timer
-def initialize_timer():
-    if "start_time" not in st.session_state:
-        st.session_state["start_time"] = datetime.now()
-    if "elapsed_seconds" not in st.session_state:
-        st.session_state["elapsed_seconds"] = 0
-
-# Function to update the elapsed time in session state
 def update_timer():
     if "start_time" in st.session_state:
         now = datetime.now()
         elapsed_time = (now - st.session_state["start_time"]).total_seconds()
         st.session_state["elapsed_seconds"] = int(elapsed_time)
-
-# Dashboard UI function
-def dashboard():
-    st.title("Enhanced Student Dashboard")
-
-    # Initialize timer if not already set
-    initialize_timer()
-    
-    # Update timer on every interaction
-    update_timer()
-    
-    # Display time spent
-    st.subheader("Attendance Tracker")
-    st.write("Time Spent on Site:", format_time(st.session_state["elapsed_seconds"]))
-
-    # Reset timer button
-    if st.button("Reset Timer"):
-        st.session_state["start_time"] = datetime.now()
-        st.session_state["elapsed_seconds"] = 0
-
-# Run the dashboard function to display UI
-dashboard()
 
 def navigation():
     st.sidebar.title("Navigation")

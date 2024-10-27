@@ -14,6 +14,7 @@ def home_page():
     st.markdown(""" ### Academic Schedule and Course Information""")
 
     timetable_df = load_default_timetable()
+    update_timer()
     tab1, tab2 = st.tabs(["Weekly Schedule", "Course Information"])
     with tab1:
         st.subheader("Weekly Class Schedule")

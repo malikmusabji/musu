@@ -48,8 +48,7 @@ def get_user_timezone():
     return "UTC"
 
 def display_session_timer():
-    if "login_time" in st.session_state:
-        elapsed_time = (datetime.now(pytz.timezone(get_user_timezone())) - st.session_state.login_time).total_seconds()
+   elapsed_time = (datetime.now(pytz.timezone(get_user_timezone())) - st.session_state.login_time).total_seconds()
     session_timer_html = f"""
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
         <div id="session-timer" style="display: flex; justify-content: center;"></div>
@@ -69,6 +68,7 @@ def display_session_timer():
         </script>
         """
     st.components.v1.html(session_timer_html, height=100)
+
 
 def display_flip_clock():
     user_timezone = get_user_timezone()
